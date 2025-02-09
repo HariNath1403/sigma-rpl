@@ -1,0 +1,44 @@
+// / 1. Colors
+$color-main: #4caf50;
+$color-background: #f0f8e7;
+$color-accent: #ffd700;
+$color-alert: #d32f2f;
+$color-others: #ff9800;
+$color-text: #403b39;
+$color-white: #fff;
+$color-testing: orangered;
+
+// 2. Font size
+$text-header-main: 6.4rem;
+$text-header-sub: 4.8rem;
+$text-big: 3.6rem;
+$text-emphasize: 2.4rem;
+$text-standard: 2rem;
+$text-small: 1.6rem;
+$text-mini: 1.2rem;
+$text-supersmall: 0.8rem;
+
+// 3. Whitespace
+$space-big: 12.8rem;
+$space-widegap: 8.4rem;
+$space-decent: 7.2rem;
+$space-margin: 5.6rem;
+$space-standard: 4.8rem;
+$space-gap: 3.6rem;
+$space-sub: 2.8rem;
+$space-small: 1.6rem;
+$space-mini: 1.2rem;
+$space-supersmall: 0.6rem;
+
+// 4. Screen Width
+@mixin respond($breakpoint) {
+  @if $breakpoint == laptop {
+    @media (max-width: 1450px) {
+      @content;
+    }
+  } @else if $breakpoint == mobile {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+}

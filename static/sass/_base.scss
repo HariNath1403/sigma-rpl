@@ -1,0 +1,49 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+
+  @include respond(laptop) {
+    font-size: 57.5%;
+  }
+
+  @include respond(mobile) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: "Fira Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: $text-small;
+  color: $color-main;
+  background-color: $color-background;
+  letter-spacing: 1.35px;
+}
+
+.background {
+  background-color: $color-background;
+}
+
+.container {
+  margin: 0 auto;
+  background-color: $color-background;
+  height: 100vh;
+  overflow: hidden;
+  padding: $space-standard 0;
+
+  @include respond(mobile) {
+    height: 120rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}

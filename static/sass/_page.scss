@@ -1,0 +1,356 @@
+.container {
+  position: relative;
+}
+
+.title {
+  width: 100%;
+  padding: $space-sub $space-small;
+  background-color: $color-main;
+
+  &__header {
+    font-size: $text-header-sub;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $color-background;
+    text-align: center;
+    letter-spacing: 2.5px;
+    line-height: 1.2;
+
+    @include respond(mobile) {
+      font-size: $text-emphasize;
+      line-height: 1.8;
+    }
+  }
+}
+
+.user {
+  margin: $space-standard 0 $space-widegap;
+  padding: $space-gap $space-sub;
+  background-color: $color-white;
+  color: $color-text;
+  border-radius: 9px;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.05);
+
+  @include respond(mobile) {
+    margin: $space-small 0;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-margin;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: $text-emphasize;
+
+    // @include respond(laptop) {
+    //   gap: $space-gap;
+    // }
+
+    @include respond(mobile) {
+      grid-template-columns: 1fr;
+      gap: $space-sub;
+    }
+
+    &--segment {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: $space-small;
+
+      @include respond(mobile) {
+        gap: $space-mini;
+      }
+    }
+
+    &--label {
+      font-weight: 500;
+      text-transform: uppercase;
+      text-transform: capitalize;
+    }
+
+    &--input {
+      width: 75%;
+      padding: $space-supersmall $space-mini;
+      background-color: $color-main;
+      color: $color-background;
+      font-family: inherit;
+      font-size: inherit;
+      border: none;
+      border-radius: 9px;
+
+      @include respond(mobile) {
+        width: 95%;
+      }
+
+      &:active,
+      &:focus {
+        background-color: $color-text;
+      }
+
+      &::placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+      }
+
+      &--file {
+        font-size: calc(#{$text-emphasize + $text-standard}/ 2);
+      }
+    }
+
+    &--footnote {
+      font-weight: 400;
+      font-size: calc(#{$text-small + $text-mini}/ 2);
+      margin-left: $space-small;
+      margin-top: -$space-mini;
+    }
+
+    &--cta {
+      width: 75%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: $space-small;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0;
+
+      @include respond(mobile) {
+        margin-top: $space-small;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    &--btn {
+      width: 27.5rem;
+      padding: $space-mini $space-small;
+      font-size: $text-emphasize;
+      font-weight: 700;
+      text-transform: uppercase;
+      background-color: $color-background;
+      color: $color-main;
+      border: none;
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.015);
+      border-radius: 3px;
+      transition: all 0.3s;
+
+      @include respond(laptop) {
+        font-size: $text-standard;
+        width: 21.5rem;
+      }
+
+      @include respond(mobile) {
+        width: 27.5rem;
+      }
+
+      &--span {
+        grid-column: span 2;
+        justify-self: center;
+      }
+    }
+  }
+}
+
+#btn-generate {
+  background-color: $color-main;
+  color: $color-text;
+
+  &:hover {
+    background-color: $color-text;
+    color: $color-background;
+    transform: scale(1.05) rotate(1.25deg);
+  }
+}
+
+#btn-clear {
+  background-color: $color-alert;
+  color: $color-background;
+
+  &:hover {
+    background-color: $color-text;
+    color: $color-background;
+    transform: scale(1.05) rotate(1.25deg);
+  }
+}
+
+#btn-help {
+  background-color: $color-others;
+  color: $color-background;
+
+  &:hover {
+    background-color: $color-text;
+    color: $color-background;
+    transform: scale(1.05) rotate(1.25deg);
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: $space-sub;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-mini;
+
+    &--logo {
+      width: $text-emphasize;
+      height: auto;
+
+      @include respond(mobile) {
+        width: $text-small;
+        transform: scale(1.25);
+      }
+    }
+
+    &--txt {
+      font-weight: 500;
+      font-size: $text-standard;
+      text-transform: uppercase;
+
+      @include respond(mobile) {
+        font-size: calc(#{$text-small + $text-mini}/ 2);
+        text-align: center;
+      }
+    }
+  }
+}
+
+.error {
+  display: none;
+
+  &__overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba($color-text, 0.95);
+    z-index: 2;
+  }
+
+  &__box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 75vh;
+    width: 65vw;
+    background-image: linear-gradient(
+      to bottom right,
+      $color-accent,
+      $color-alert
+    );
+    padding: $space-gap $space-small;
+    z-index: 3;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.35);
+    border-radius: 9px;
+
+    @include respond(mobile) {
+      width: 80vw;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    font-size: $text-header-sub;
+    text-transform: uppercase;
+    color: $color-text;
+    margin-top: $space-sub;
+
+    @include respond(mobile) {
+      font-size: $text-emphasize;
+    }
+  }
+
+  &__txt {
+    margin-top: $space-gap;
+    font-weight: 500;
+    font-size: $text-big;
+    line-height: 1.6;
+    color: $color-text;
+
+    @include respond(mobile) {
+      margin-top: $space-sub;
+      font-size: $text-standard;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    margin: $space-sub 0;
+    color: $color-text;
+    font-size: $text-emphasize;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: $space-mini;
+    overflow-y: scroll;
+    background-color: $color-white;
+
+    @include respond(mobile) {
+      margin-top: $space-sub;
+      font-size: $text-standard;
+      gap: $space-small;
+    }
+
+    li {
+      line-height: 1.6;
+      margin-left: $space-gap;
+    }
+  }
+
+  &__exit {
+    background-color: $color-text;
+    padding: $space-supersmall $space-mini;
+    position: absolute;
+    top: $space-sub;
+    right: $space-sub;
+    color: $color-white;
+    font-size: $text-emphasize;
+    border: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($color-text, 0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  border: 10px solid $color-background;
+  border-top: 10px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
