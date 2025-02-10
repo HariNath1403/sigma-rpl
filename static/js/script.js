@@ -1,5 +1,6 @@
 console.log("Hi Hari");
-const BACKEND_URL = window.location.origin;
+let BACKEND_URL = window.location.origin;
+BACKEND_URL = "https://rpl-sigma-c30856f27fda.herokuapp.com";
 
 // For Userform
 const userform = document.querySelector(".user__form");
