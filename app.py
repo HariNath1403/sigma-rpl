@@ -3,10 +3,13 @@ import io
 import pandas as pd
 from datetime import datetime
 import re
+import logging
 from flask import Flask, render_template, request, jsonify, send_file
 from werkzeug.utils import secure_filename
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app) 
 
 # 1. Modify the function to handle file streams and arguments
 def process_files(issue_report_stream, stock_balance_stream, month_start, month_end, target_max_months):
@@ -165,6 +168,7 @@ def handle_files():
         return send_file(output_stream, as_attachment=True, download_name=f"{file_name}.xlsx", mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
     except Exception as e:
+        logging.error(f"Error in /process-files: {e}")
         return jsonify({"error": str(e)}), 500
 
 
