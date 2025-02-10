@@ -166,7 +166,10 @@ def handle_files():
         output_stream = process_files(issue_report_stream, stock_balance_stream, start_date, end_date, top_up_months)
 
         # Send the generated file as a response
-        return send_file(output_stream, as_attachment=True, download_name=f"{file_name}.xlsx", mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        # return send_file(output_stream, as_attachment=True, download_name=f"{file_name}.xlsx", mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        response = send_file(output_stream, as_attachment=True, download_name=f"{file_name}.xlsx", mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        response.headers["X-Success-Message"] = "Files processed successfully"
+        return response
 
     except Exception as e:
         logging.error(f"Error in /process-files: {e}")
