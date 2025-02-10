@@ -99,6 +99,7 @@ const validationCheck = async function () {
         generateErrorMarkup([result.error || "Processing failed"]);
       }
     } catch (error) {
+      console.error("Network error:", error);
       generateErrorMarkup(["Network error. Try again later."]);
     }
 
