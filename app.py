@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 from flask_cors import CORS
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
 CORS(app) 
 
 # 1. Modify the function to handle file streams and arguments
@@ -173,5 +174,5 @@ def handle_files():
 
 
 if __name__ == "__main__":
-    # app.run(host="0.0.0.0", port=5000, debug=True)
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
