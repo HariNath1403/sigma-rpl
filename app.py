@@ -15,10 +15,10 @@ CORS(app)
 # 1. Modify the function to handle file streams and arguments
 def process_files(issue_report_stream, stock_balance_stream, month_start, month_end, target_max_months):
     # 1. Import files directly from the streams
-    # df_issue = pd.read_excel(issue_report_stream)
-    # df_stockBal = pd.read_excel(stock_balance_stream)
-    df_issue = pd.read_csv(issue_report_stream)
-    df_stockBal = pd.read_csv(stock_balance_stream)
+    df_issue = pd.read_excel(issue_report_stream)
+    df_stockBal = pd.read_excel(stock_balance_stream)
+    # df_issue = pd.read_csv(issue_report_stream)
+    # df_stockBal = pd.read_csv(stock_balance_stream)
 
     def convertStringNum(num):
         num = str(num)
