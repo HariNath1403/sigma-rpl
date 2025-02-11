@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from flask_cors import CORS
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  
 CORS(app) 
 
 # 1. Modify the function to handle file streams and arguments
@@ -136,10 +136,9 @@ def process_files(issue_report_stream, stock_balance_stream, month_start, month_
     df = df.sort_values(by=['Purchase Type', 'Item Name'], ascending=[True, True])
 
     # 7. Save the final DataFrame to a BytesIO stream (in memory)
-    output_stream = io.BytesIO()  # Create a BytesIO object to hold the Excel file in memory
-    df.to_excel(output_stream, index=False, engine='openpyxl')  # Write the DataFrame to the in-memory stream
-    output_stream.seek(0)  # Seek to the beginning of the stream to prepare for sending
-
+    output_stream = io.BytesIO()  
+    df.to_excel(output_stream, index=False, engine='openpyxl')  
+    output_stream.seek(0) 
     return output_stream
 
 @app.route('/')
@@ -165,15 +164,13 @@ def handle_files():
 
         output_stream = process_files(issue_report_stream, stock_balance_stream, start_date, end_date, top_up_months)
 
-        # Send the generated file as a response
-        # return send_file(output_stream, as_attachment=True, download_name=f"{file_name}.xlsx", mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         response = send_file(output_stream, as_attachment=True, download_name=f"{file_name}.xlsx", mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         response.headers["X-Success-Message"] = "Files processed successfully"
         return response
 
     except Exception as e:
         logging.error(f"Error in /process-files: {e}")
-        return jsonify({"error": str(e)}), 500
+        return "An error occurred during file processing.", 500
 
 
 if __name__ == "__main__":
